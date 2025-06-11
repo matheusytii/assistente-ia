@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>💻 Assistente de Suporte Técnico</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0f172a;
+      color: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 1rem;
+    }
+
+    .container {
+      background-color: #1e293b;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0, 128, 255, 0.2);
+      width: 100%;
+      max-width: 700px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #38bdf8;
+      margin-bottom: 1rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+      color: #e2e8f0;
+    }
+
+    textarea {
+      width: 100%;
+      padding: 1rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      border: none;
+      background-color: #334155;
+      color: #f8fafc;
+      margin-bottom: 1rem;
+      resize: vertical;
+    }
+
+    button {
+      background-color: #0ea5e9;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      background-color: #0284c7;
+    }
+
+    .resposta {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background-color: #334155;
+      border-left: 4px solid #38bdf8;
+      border-radius: 8px;
+      white-space: pre-wrap;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🛠 Assistente de Suporte Técnico</h1>
+    <form id="form">
+      <label for="pergunta">Descreva seu problema:</label>
+      <textarea id="pergunta" required placeholder="Ex: Estou com problemas na minha placa de vídeo..."></textarea>
+      <button type="submit">Enviar</button>
+    </form>
+    <div id="resposta" class="resposta"></div>
+  </div>
+
+  <script>
+    const form = document.getElementById("form");
+    const perguntaInput = document.getElementById("pergunta");
+    const respostaDiv = document.getElementById("resposta");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      respostaDiv.textContent = "Processando resposta...";
+
+      try {
+        const res = await fetch("/suporte", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ pergunta: perguntaInput.value }),
+        });
+
+        const data = await res.json();
+        respostaDiv.textContent = data.resposta || "Nenhuma resposta recebida.";
+      } catch (error) {
+        respostaDiv.textContent = "Erro ao se comunicar com o assistente.";
+      }
+    });
+  </script>
+</body>
+</html>
