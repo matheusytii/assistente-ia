@@ -1,33 +1,17 @@
-# 🤖 Assistente de Suporte Técnico com Node.js + Gemini
+# 🔧 Assistente de Suporte Mecânico de Automóveis (Node.js + Gemini)
 
-Este projeto é um backend em Node.js com integração à API do Gemini para responder dúvidas técnicas de usuários.
+Este projeto é um backend em Node.js integrado à API do Gemini, capaz de responder dúvidas técnicas sobre problemas mecânicos em automóveis.
 
-## Como usar
+## 🚗 Funcionalidade
 
-1. Crie um arquivo `.env` com sua chave da Gemini:
-```
-GEMINI_API_KEY=sua-chave-aqui
-```
+O assistente interpreta perguntas de motoristas sobre defeitos no carro e responde de forma clara, técnica e objetiva, como um mecânico experiente.
 
-2. Instale as dependências:
-```
-npm install
-```
+## ✅ Pré-requisitos
 
-3. Inicie o servidor:
-```
-npm start
-```
+1. Node.js instalado na máquina  
+2. Conta com chave de API Gemini ativa
 
-4. Faça requisições POST para `/suporte` com:
-```json
-{ "pergunta": "Meu notebook não liga" }
-```
+## 🔐 Configuração
 
-## Exemplo de resposta
+Crie um arquivo `.env` na raiz do projeto com o seguinte conteúdo:
 
-```json
-{
-  "resposta": "Certifique-se de que o notebook está conectado à energia..."
-}
-```
